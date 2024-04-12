@@ -1,0 +1,112 @@
+$bg-primary: rgb(86, 86, 86);
+$text-color-primary: white;
+$bg-card: rgb(70, 91, 124);
+$bg-game: #2d3e58;
+$test: rgb(17, 128, 69);
+
+body {
+  background-color: $bg-primary;
+  color: $text-color-primary;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+}
+
+header {
+    background-color: darken($bg-primary, 10%);
+    min-height: 50px;
+}
+
+main {
+    width: 1080px;
+    margin: auto;
+    background-color: darken($bg-primary, 5%);
+    padding: 2%;
+}
+
+.sectionHeader {
+    text-align: center;
+}
+
+#characterContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+  width: 33.3%;
+  background-image: linear-gradient($bg-card, darken($bg-card, 10%));
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 3%;
+  outline: 2px black solid;
+
+  &__name {
+    text-align: center;
+    margin: 0;
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  &__figure {
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    & img {
+      width: 100%;
+    }
+  }
+
+  &__desc {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  &__statList {
+    margin-bottom: 10px;
+    padding: 0;
+    box-shadow: 0px 0px 25px 0px rgb(57, 57, 57);
+    border-radius: 10px;
+    outline: 2px black solid;
+    background-color: rgb(57, 57, 57);
+    width: 85%;
+  }
+
+  &__stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    margin-bottom: 5px;
+    margin-top: 5px;
+
+    p {
+      margin: 0;
+    }
+
+    &--health {
+      i {
+        color: red;
+      }
+    }
+
+    &--damage {
+      i {
+        color: orange;
+      }
+    }
+
+    &--speed {
+      i {
+        color: rgb(0, 255, 242);
+      }
+    }
+  }
+}
+
+#gameContainer {
+    margin-top: 30px;
+}

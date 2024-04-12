@@ -1,0 +1,17 @@
+{
+    "enemyList": [
+        {
+            "health": 30,
+            "damage": 5,
+            "speed": 10,
+
+            "icon": "something.png",
+            "spriteName": "something.png",
+
+            "name": "Triangle",
+            "threat": 0,
+            "timeUntilSpawnable": 300,
+            "weight": 1
+        }
+    ]
+}
