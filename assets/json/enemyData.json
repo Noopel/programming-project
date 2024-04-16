@@ -4,7 +4,7 @@
             "name": "Lemurian",
             "health": 20,
             "damage": 5,
-            "speed": 25,
+            "speed": 32,
 
             "icon": "salamander.png",
             "spriteName": "salamander.png",
@@ -17,7 +17,7 @@
             "name": "Golem",
             "health": 50,
             "damage": 15,
-            "speed": 12,
+            "speed": 20,
 
             "icon": "stone_golem.png",
             "spriteName": "stone_golem.png",
@@ -28,9 +28,9 @@
         },
         {
             "name": "Vagrant",
-            "health": 100,
+            "health": 125,
             "damage": 40,
-            "speed": 5,
+            "speed": 15,
 
             "icon": "jellyfish.png",
             "spriteName": "jellyfish.png",
@@ -41,9 +41,9 @@
         },
         {
             "name": "Overlord",
-            "health": 75,
+            "health": 100,
             "damage": 25,
-            "speed": 18,
+            "speed": 25,
 
             "icon": "imp_overlord.png",
             "spriteName": "imp_overlord.png",

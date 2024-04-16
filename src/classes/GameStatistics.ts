@@ -110,7 +110,7 @@ class GameStatistics {
             },
           },
         },
-        backgroundColor: "rgb(17, 113, 128)",
+        backgroundColor: "rgb(17, 153, 188)",
       },
     });
     return chart;

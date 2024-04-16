@@ -2,7 +2,7 @@ $bg-primary: rgb(86, 86, 86);
 $text-color-primary: white;
 $bg-card: rgb(70, 91, 124);
 $bg-game: #2d3e58;
-$test: rgb(41, 41, 41);
+$test: rgb(64, 172, 188);
 
 body {
   background-color: $bg-primary;
@@ -127,6 +127,8 @@ main {
 
   & .statistics {
     margin-top: 2%;
+    border-radius: 5px;
+    border: 1px rgb(28, 28, 28) solid;
     background-color: lighten($bg-primary, 1%);
     width: 80%;
     padding: 10px;
