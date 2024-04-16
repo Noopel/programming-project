@@ -45,7 +45,7 @@ class Enemy {
     gsap.to(EnemySprite.position, {
       x: EndPosition.x,
       y: EndPosition.y,
-      duration: (distance/10) / enemyInfo.speed,
+      duration: (distance/50) / enemyInfo.speed,
       ease: "none"
     });
   }

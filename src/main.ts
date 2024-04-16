@@ -52,7 +52,8 @@ Assets.addBundle("assets", assetBundle);
   await app.init({width: Number(width), height: Number(width)/aspectRatio, manageImports: true})
 
   window.onresize = function(_event) {
-    app.renderer.resize(Number(width), Number(width)/aspectRatio)
+    app.renderer.resize(Number(gameContainer.clientWidth), Number(gameContainer.clientWidth)/aspectRatio)
+    
   }
   
 
@@ -62,10 +63,10 @@ Assets.addBundle("assets", assetBundle);
 
   console.log(assets)
 
-  const gameStatistics = new GameStatistics();
+  const gameStatistics = new GameStatistics({characterList: charData.characterList, enemyList: enemyData.enemyList});
 
   new Game(app, assets, {characterList: charData.characterList, enemyList: enemyData.enemyList}, (gameSessions: SessionData[])=>{
-
+    gameStatistics.updateCharts(gameSessions[gameSessions.length-1])
   })
 
   let main = document.querySelector("main") as HTMLElement;
