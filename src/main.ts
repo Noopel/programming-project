@@ -1,11 +1,14 @@
 import './style.scss'
 
+import 'pixi.js/math-extras';
+
 import characterData from "../assets/json/characterData.json"
 import CharacterCard from './classes/CharacterCard'
 import { Application, Assets } from 'pixi.js';
 import Game from './classes/Game/Game';
 import charData from "../assets/json/characterData.json"
 import enemyData from "../assets/json/enemyData.json"
+import GameStatistics from './classes/GameStatistics';
 
 declare module globalThis {
  var __PIXI_APP__: Application;
@@ -15,13 +18,20 @@ const app = new Application();
 globalThis.__PIXI_APP__ = app;
 
 let assetBundle: {[key: string]: string} = {
-  playButton: "../assets/img/playButton.png"
+  playButton: "../assets/img/playButton.png",
+  bulletSprite: "../assets/img/bullet.png"
+
 }
 
 charData.characterList.forEach((charData) => {
   assetBundle[charData.name + "_sprite"] = `../assets/img/${charData.characterSprite}`
   assetBundle[charData.name + "_icon"] = `../assets/img/${charData.icon}`
 });
+
+enemyData.enemyList.forEach((enemData)=>{
+  assetBundle[enemData.name + "_sprite"] = `../assets/img/${enemData.spriteName}`
+  assetBundle[enemData.name + "_icon"] = `../assets/img/${enemData.icon}`
+})
 
 Assets.addBundle("assets", assetBundle);
 
@@ -39,7 +49,7 @@ Assets.addBundle("assets", assetBundle);
   let width = gameContainer.clientWidth
   let aspectRatio = 16/9
 
-  await app.init({width: Number(width), height: Number(width)/aspectRatio})
+  await app.init({width: Number(width), height: Number(width)/aspectRatio, manageImports: true})
 
   window.onresize = function(_event) {
     app.renderer.resize(Number(width), Number(width)/aspectRatio)
@@ -52,7 +62,14 @@ Assets.addBundle("assets", assetBundle);
 
   console.log(assets)
 
-  new Game(app, assets, {characterList: charData.characterList, enemyList: enemyData.enemyList})
+  const gameStatistics = new GameStatistics();
+
+  new Game(app, assets, {characterList: charData.characterList, enemyList: enemyData.enemyList}, (gameSessions: SessionData[])=>{
+
+  })
+
+  let main = document.querySelector("main") as HTMLElement;
+  gameStatistics.setParent(main)
 
 
 })()

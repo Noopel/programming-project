@@ -14,8 +14,10 @@
     "vite": "^5.2.0"
   },
   "dependencies": {
+    "@pixi/math-extras": "^7.4.2",
     "bootstrap-icons": "^1.11.3",
     "gsap": "^3.12.5",
-    "pixi.js": "^8.1.0"
+    "pixi.js": "^8.1.0",
+    "set-random-interval": "^1.1.0"
   }
 }

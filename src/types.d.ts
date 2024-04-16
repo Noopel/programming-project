@@ -29,12 +29,20 @@ type GameData = {
   enemyList: EnemyData[],
 }
 
+type SessionData = {
+  timePassed: number;
+  kills: number;
+  survivor: string;
+}
+
 /** Custom */
+type callbackFn = () => void;
+
 interface ElementInfo {
   type: string;
   innerText?: string;
   id?: string;
-  class?: string[];
+  class?: string[] | string;
   attributes?: { [key: string]: string };
   children?: ElementInfo[];
   repeat?: number;

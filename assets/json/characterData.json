@@ -4,7 +4,7 @@
             "name": "Acrid",
             "health": 125,
             "damage": 25,
-            "speed": 15,
+            "speed": 45,
 
             "icon": "acrid_icon.png",
             "description": "This dog doesn't hold back",
@@ -16,7 +16,7 @@
             "name": "Commando",
             "health": 75,
             "damage": 15,
-            "speed": 30,
+            "speed": 100,
 
             "icon": "commando_icon.png",
             "description": "Two guns are better than one",
@@ -28,7 +28,7 @@
             "name": "Loader",
             "health": 100,
             "damage": 50,
-            "speed": 10,
+            "speed": 30,
 
             "icon": "loader_icon.png",
             "description": "Fists are the way to go",

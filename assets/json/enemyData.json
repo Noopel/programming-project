@@ -1,17 +1,56 @@
 {
     "enemyList": [
         {
-            "health": 30,
+            "name": "Lemurian",
+            "health": 20,
             "damage": 5,
-            "speed": 10,
+            "speed": 25,
 
-            "icon": "something.png",
-            "spriteName": "something.png",
+            "icon": "salamander.png",
+            "spriteName": "salamander.png",
 
-            "name": "Triangle",
             "threat": 0,
-            "timeUntilSpawnable": 300,
-            "weight": 1
+            "timeUntilSpawnable": 0,
+            "weight": 10
+        },
+        {
+            "name": "Golem",
+            "health": 50,
+            "damage": 15,
+            "speed": 12,
+
+            "icon": "stone_golem.png",
+            "spriteName": "stone_golem.png",
+
+            "threat": 1,
+            "timeUntilSpawnable": 60,
+            "weight": 5
+        },
+        {
+            "name": "Vagrant",
+            "health": 100,
+            "damage": 40,
+            "speed": 5,
+
+            "icon": "jellyfish.png",
+            "spriteName": "jellyfish.png",
+
+            "threat": 2,
+            "timeUntilSpawnable": 120,
+            "weight": 2
+        },
+        {
+            "name": "Overlord",
+            "health": 75,
+            "damage": 25,
+            "speed": 18,
+
+            "icon": "imp_overlord.png",
+            "spriteName": "imp_overlord.png",
+
+            "threat": 3,
+            "timeUntilSpawnable": 0,
+            "weight": 10
         }
     ]
 }

@@ -3,8 +3,13 @@ import { SpriteOnHover } from "../UI/SpriteHover";
 import Game from "./Game";
 
 class CharacterSelection {
-  constructor(game: Game, parent: Container, gameData: GameData, callbackFn: selectionCallback) {
-    
+  charSprites: Sprite[] = [];
+  container: Container
+  debounce: boolean = false;
+
+  constructor(game: Game, parent: Container, gameData: GameData, callbackFn: selectionCallback | undefined) {
+    this.container = parent
+
     const appOffset = game.getCanvasMidPoint();
 
     let titleLabel = new Text();
@@ -21,7 +26,6 @@ class CharacterSelection {
     parent.addChild(titleLabel)
 
     const GAP = 20;
-    let debounce = false
 
     gameData.characterList.forEach((charInfo, index) => {
       const charSprite = new Sprite(game.assets[`${charInfo.name}_sprite`]);
@@ -39,13 +43,24 @@ class CharacterSelection {
 
       charSprite.eventMode = "static"
       charSprite.addEventListener("click", ()=>{
-        if(debounce){charSprite.eventMode = "none"; return}
-        debounce = true
+        if(this.debounce){charSprite.eventMode = "none"; return}
+        this.debounce = true
         charSprite.eventMode = "none"
 
-        callbackFn(charInfo)
+        if(callbackFn) {
+          callbackFn(charInfo)
+        }
       })
+
+      this.charSprites.push(charSprite)
     });
+  }
+
+  reset() {
+    this.debounce = false
+    this.charSprites.forEach((sprite)=>{
+      sprite.eventMode = "static"
+    })
   }
 }
 

@@ -6,9 +6,8 @@ class CustomElement {
   defaultDisplay: string;
   userdata: {[key: string]: any} = {};
 
-  constructor(elemInfo: ElementInfo, parent: Element | HTMLElement | CustomElement) {
+  constructor(elemInfo: ElementInfo, parent?: Element | HTMLElement | CustomElement) {
     let element = document.createElement(elemInfo.type);
-    this.parent = parent;
     this.type = elemInfo.type;
 
     this.element = element;
@@ -18,9 +17,13 @@ class CustomElement {
     }
 
     if (elemInfo.class) {
-      elemInfo.class.forEach((className: string) => {
-        element.classList.add(className);
-      });
+      if(typeof(elemInfo.class) == "string") {
+        element.classList.add(elemInfo.class);
+      } else {
+        elemInfo.class.forEach((className: string) => {
+          element.classList.add(className);
+        });
+      }
     }
 
     if (elemInfo.innerText) {
@@ -40,9 +43,10 @@ class CustomElement {
       });
     }
 
+    if(parent){this.parent = parent;}
     if (parent && parent instanceof CustomElement) {
       parent.appendChild(this);
-    } else {
+    } else if (parent) {
       parent
         ? parent.appendChild(element)
         : parent === null
@@ -127,6 +131,11 @@ class CustomElement {
     this.element.appendChild(otherElement.element);
     this.children.push(otherElement);
     otherElement.parent = this.element;
+  }
+
+  setParentToDOM(otherElement: HTMLElement | Element) {
+    this.parent = otherElement
+    otherElement.appendChild(this.element)
   }
 
   findChild(query: ElementQuery, recursive?: boolean): CustomElement | null {
