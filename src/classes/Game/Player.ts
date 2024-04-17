@@ -2,6 +2,7 @@ import { Color, Container, Graphics, Sprite } from "pixi.js";
 import Game from "./Game";
 import Gun from "./Gun";
 import gsap from "gsap";
+import HealthBar from "./HealthBar";
 
 class Player {
   maxHealth: number;
@@ -9,6 +10,8 @@ class Player {
   damage: number;
   speed: number;
   sprite: Sprite;
+
+  healthBar: HealthBar;
 
   isAlive: boolean = true;
 
@@ -31,10 +34,12 @@ class Player {
     charSprite.position = { x: game.app.canvas.width / 2, y: game.app.canvas.height / 2 };
     stageContainer.addChild(charSprite);
 
+    this.healthBar = new HealthBar(charSprite);
+
     const collisionBox = new Graphics();
     collisionBox.rect(0 - charSprite.width * 2.5, 0 - charSprite.width * 2.5, charSprite.width * 5, charSprite.width * 5);
 
-    collisionBox.fill(new Color("rgba(255, 0, 0, 0.25)"));
+    collisionBox.fill(new Color("rgba(255, 0, 0, 0)"));
     this.collisionBox = collisionBox;
     charSprite.addChild(collisionBox);
 
@@ -44,7 +49,7 @@ class Player {
     let onCooldown = false;
 
     const gun = new Gun(game, stageContainer);
-    this.gun = gun
+    this.gun = gun;
 
     stageContainer.eventMode = "static";
     stageContainer.addEventListener("click", (event) => {
@@ -77,18 +82,33 @@ class Player {
   }
 
   takeDamage(amount: number) {
-    let newHealth = Math.max(this.health-amount, 0)
-    this.health = newHealth
+    let newHealth = Math.max(this.health - amount, 0);
+    this.health = newHealth;
 
-    if(this.health === 0) {
-        this.isAlive = false
-        if(this.onDeath){this.onDeath()}
+    gsap.fromTo(
+      this.sprite,
+      {
+        tint: "red",
+      },
+      {
+        tint: "white",
+        duration: 0.15,
+      }
+    );
+
+    this.healthBar.updateScale(newHealth/this.maxHealth)
+
+    if (this.health === 0) {
+      this.isAlive = false;
+      if (this.onDeath) {
+        this.onDeath();
+      }
     }
   }
 
   destroy() {
-    this.sprite.destroy()
-    delete this.gun
+    this.sprite.destroy();
+    delete this.gun;
   }
 }
 

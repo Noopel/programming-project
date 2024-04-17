@@ -9,6 +9,7 @@ import Game from './classes/Game/Game';
 import charData from "../assets/json/characterData.json"
 import enemyData from "../assets/json/enemyData.json"
 import GameStatistics from './classes/GameStatistics';
+import EnemyGrid from './classes/EnemyGrid';
 
 declare module globalThis {
  var __PIXI_APP__: Application;
@@ -44,6 +45,10 @@ Assets.addBundle("assets", assetBundle);
     new CharacterCard(charData, cardCon)
   })
 
+  let gridCon = document.querySelector("#enemyContainer") as HTMLElement;
+
+  new EnemyGrid(enemyData.enemyList, gridCon)
+
   let gameContainer = document.querySelector("#gameContainer") as HTMLElement;
 
   let width = gameContainer.clientWidth
@@ -56,7 +61,6 @@ Assets.addBundle("assets", assetBundle);
     
   }
   
-
   gameContainer.appendChild(app.canvas)
   
   const assets = await Assets.loadBundle('assets');

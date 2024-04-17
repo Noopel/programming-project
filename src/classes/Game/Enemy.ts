@@ -1,10 +1,12 @@
 import gsap from "gsap";
 import { Color, Graphics, Point, Sprite } from "pixi.js";
+import HealthBar from "./HealthBar";
 
-let enemyId = 0
+let enemyId = 0;
 
 class Enemy {
   health: number;
+  maxHealth: number;
   damage: number;
   speed: number;
   id: string = enemyId + "_enemy";
@@ -16,62 +18,80 @@ class Enemy {
 
   isAlive: boolean = true;
 
+  healthBar: HealthBar;
+
   onDeath: callbackFn | undefined;
 
   constructor(sprite: Sprite, startPosition: Point, EndPosition: Point, enemyInfo: EnemyData) {
-    enemyId++
+    enemyId++;
     this.health = enemyInfo.health;
+    this.maxHealth = enemyInfo.health;
     this.damage = enemyInfo.damage;
     this.speed = enemyInfo.speed;
 
-    const distance = EndPosition.subtract(startPosition).magnitude()
+    const distance = EndPosition.subtract(startPosition).magnitude();
 
     let EnemySprite = sprite;
-    EnemySprite.anchor.set(0.5)
-    EnemySprite.scale.set(0.2)
-    EnemySprite.label = "Enemy - " + enemyInfo.name
+    EnemySprite.anchor.set(0.5);
+    EnemySprite.scale.set(0.2);
+    EnemySprite.label = "Enemy - " + enemyInfo.name;
     EnemySprite.position = startPosition;
     //EnemySprite.rotation = Math.atan2(direction.y, direction.x)
 
     this.sprite = EnemySprite;
 
-    const collisionBox = new Graphics();
-    collisionBox.rect(0-(EnemySprite.width*2.5), 0-(EnemySprite.width*2.5), EnemySprite.width*5, EnemySprite.width*5);
+    this.healthBar = new HealthBar(EnemySprite);
 
-    collisionBox.fill(new Color("rgba(255, 0, 0, 0.25)"));
+    const collisionBox = new Graphics();
+    collisionBox.rect(0 - EnemySprite.width * 2.5, 0 - EnemySprite.width * 2.5, EnemySprite.width * 5, EnemySprite.width * 5);
+
+    collisionBox.fill(new Color("rgba(255, 0, 0, 0)"));
     this.collisionBox = collisionBox;
     EnemySprite.addChild(collisionBox);
 
     gsap.to(EnemySprite.position, {
       x: EndPosition.x,
       y: EndPosition.y,
-      duration: (distance) / enemyInfo.speed,
-      ease: "none"
+      duration: distance / enemyInfo.speed,
+      ease: "none",
     });
   }
 
   takeDamage(damage: number): boolean {
     this.health = Math.max(this.health - damage, 0);
 
-    //Play on hit animation?
+    gsap.fromTo(
+      this.sprite,
+      {
+        tint: "red",
+      },
+      {
+        tint: "white",
+        duration: 0.15,
+      }
+    );
+
+    this.healthBar.updateScale(this.health/this.maxHealth)
 
     if (this.health === 0) {
       this.isAlive = false;
       if (this.onDeath) {
         this.onDeath();
       }
-      //Play animation?
-      this.sprite.destroy();
 
-      return true
+      setTimeout(() => {
+        this.sprite.destroy();
+      }, 30);
+
+      return true;
     }
 
-    return false
+    return false;
   }
 
   destroy() {
     this.isAlive = false;
-    this.sprite.destroy()
+    this.sprite.destroy();
   }
 }
 

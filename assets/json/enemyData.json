@@ -3,54 +3,106 @@
         {
             "name": "Lemurian",
             "health": 20,
-            "damage": 5,
+            "damage": 10,
             "speed": 32,
 
             "icon": "salamander.png",
             "spriteName": "salamander.png",
 
-            "threat": 0,
+            "threat": 1,
             "timeUntilSpawnable": 0,
-            "weight": 10
+            "weight": 15
+        },
+        {
+            "name": "Hermit",
+            "health": 45,
+            "damage": 15,
+            "speed": 22,
+
+            "icon": "crab.png",
+            "spriteName": "crab.png",
+
+            "threat": 1,
+            "timeUntilSpawnable": 0,
+            "weight": 12
+        },
+        {
+            "name": "Pest",
+            "health": 20,
+            "damage": 5,
+            "speed": 45,
+
+            "icon": "flyingshit.png",
+            "spriteName": "flyingshit.png",
+
+            "threat": 1,
+            "timeUntilSpawnable": 10,
+            "weight": 8
         },
         {
             "name": "Golem",
-            "health": 50,
-            "damage": 15,
-            "speed": 20,
+            "health": 60,
+            "damage": 20,
+            "speed": 18,
 
             "icon": "stone_golem.png",
             "spriteName": "stone_golem.png",
 
-            "threat": 1,
-            "timeUntilSpawnable": 60,
+            "threat": 2,
+            "timeUntilSpawnable": 20,
+            "weight": 7
+        },
+        {
+            "name": "Brass",
+            "health": 50,
+            "damage": 15,
+            "speed": 24,
+
+            "icon": "brass.png",
+            "spriteName": "brass.png",
+
+            "threat": 2,
+            "timeUntilSpawnable": 30,
             "weight": 5
         },
         {
             "name": "Vagrant",
-            "health": 125,
-            "damage": 40,
+            "health": 150,
+            "damage": 50,
             "speed": 15,
 
             "icon": "jellyfish.png",
             "spriteName": "jellyfish.png",
 
-            "threat": 2,
-            "timeUntilSpawnable": 120,
-            "weight": 2
+            "threat": 3,
+            "timeUntilSpawnable": 20,
+            "weight": 3
+        },
+        {
+            "name": "Titan",
+            "health": 125,
+            "damage": 35,
+            "speed": 22,
+
+            "icon": "titan.png",
+            "spriteName": "titan.png",
+
+            "threat": 3,
+            "timeUntilSpawnable": 40,
+            "weight": 3
         },
         {
             "name": "Overlord",
             "health": 100,
             "damage": 25,
-            "speed": 25,
+            "speed": 32,
 
             "icon": "imp_overlord.png",
             "spriteName": "imp_overlord.png",
 
             "threat": 3,
-            "timeUntilSpawnable": 0,
-            "weight": 10
+            "timeUntilSpawnable": 60,
+            "weight": 2
         }
     ]
 }

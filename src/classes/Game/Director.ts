@@ -17,12 +17,39 @@ class Director {
     }
 
     startDirecting(newStage: Container) {
+        function weighted_random(options: EnemyData[]) {
+            var i;
+        
+            var weights = [options[0].weight];
+        
+            for (i = 1; i < options.length; i++)
+                weights[i] = options[i].weight + weights[i - 1];
+            
+            var random = Math.random() * weights[weights.length - 1];
+            
+            for (i = 0; i < weights.length; i++)
+                if (weights[i] > random)
+                    break;
+            
+            return options[i];
+        }
+
         this.currentStage = newStage
         this.intervalFn = setRandomInterval(()=>{
             if(!this.currentStage){this.intervalFn?.clear(); this.intervalFn = undefined; return}
             if(Object.values(this.game.enemyList).length > 20){return}
 
-            let enemyData = this.enemyDataList[Math.floor(Math.random()*this.enemyDataList.length)]
+            let validEnemiesToSpawn: EnemyData[] = []
+
+            this.enemyDataList.forEach((enemyInfo)=>{
+                if(this.game.currentSession && (this.game.currentSession.timePassed/60) > enemyInfo.timeUntilSpawnable) {
+                    validEnemiesToSpawn.push(enemyInfo)
+                }
+            })
+
+            console.log(validEnemiesToSpawn)
+
+            let enemyData = weighted_random(validEnemiesToSpawn)
 
             const sprite = new Sprite(this.game.assets[enemyData.name+"_sprite"])
             
@@ -36,7 +63,7 @@ class Director {
                 delete this.game.enemyList[enemy.id]
             }
             this.game.enemyList[enemy.id] = enemy
-        }, 2000, 5000)
+        }, 1000, 2000)
     }
 
     stopDirecting() {

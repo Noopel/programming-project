@@ -33,7 +33,7 @@ class MainMenu {
     titleLabel.style.stroke = "black";
     titleLabel.style.fill = "white";
     titleLabel.position = { x: appOffset.x, y: appOffset.y - appOffset.y / 1.75 };
-    titleLabel.text = "Rainy Day 2";
+    titleLabel.text = "Risk of Rain: Budget Edition";
 
     let playButton = new Sprite(game.assets.playButton);
     playButton.label = "Play button";

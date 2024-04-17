@@ -62,7 +62,6 @@ class GameStatistics {
 
   set activeChart(newChart: CustomElement) {
     const oldChart = this.currentChart;
-    console.log(oldChart);
     if (oldChart) {
       oldChart.visible = false;
     }

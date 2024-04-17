@@ -17,6 +17,7 @@ class Game {
   player: Player | undefined;
 
   gameSessions: SessionData[] = [];
+  currentSession: undefined | SessionData;
 
   transition: Graphics;
 
@@ -38,8 +39,6 @@ class Game {
     const director = new Director(this, gameData.enemyList)
     const stageManager = new StageManager(this);
 
-    let currentSession: undefined | SessionData;
-
     const mainMenu = new MainMenu(this, gameData);
     mainMenu.characterSelected = (charInfo) => {
       console.log(charInfo)
@@ -54,7 +53,7 @@ class Game {
           director.startDirecting(newStage)
           this.player = stageManager.playerCharacter
 
-          currentSession = {
+          this.currentSession = {
             timePassed: 0,
             kills: 0,
             survivor: charInfo.name,
@@ -70,8 +69,8 @@ class Game {
 
     stageManager.gameEnded = () => {
       console.log("Game ended")
-      this.gameSessions.push(currentSession as SessionData)
-      currentSession = undefined;
+      this.gameSessions.push(this.currentSession as SessionData)
+      this.currentSession = undefined;
       director.stopDirecting()
       this.player = undefined;
       mainMenu.reset()
@@ -95,7 +94,7 @@ class Game {
     //Physics handler
     app.ticker.add((_ticker) => {
       if(!stageManager.currentStage){return}
-      if(currentSession){currentSession.timePassed+=_ticker.deltaTime}
+      if(this.currentSession){this.currentSession.timePassed+=_ticker.deltaTime}
       let enemies = Object.values(this.enemyList)
       if(enemies.length === 0) {return}
 
@@ -109,7 +108,7 @@ class Game {
           if(!collisionDetector.check(enemy.collisionBox, bullet.collisionBox)){return}
           if(!enemy.isAlive){return}
           let died = enemy.takeDamage(bullet.damage)
-          if(died && currentSession){currentSession.kills++}
+          if(died && this.currentSession){this.currentSession.kills++}
           bullet.destroy()
           console.log("Collision detected!")
         })

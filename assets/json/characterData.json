@@ -2,8 +2,8 @@
     "characterList": [
         {
             "name": "Acrid",
-            "health": 125,
-            "damage": 25,
+            "health": 110,
+            "damage": 30,
             "speed": 45,
 
             "icon": "acrid_icon.png",
@@ -14,7 +14,7 @@
         },
         {
             "name": "Commando",
-            "health": 75,
+            "health": 80,
             "damage": 15,
             "speed": 100,
 
@@ -27,7 +27,7 @@
         {
             "name": "Loader",
             "health": 100,
-            "damage": 50,
+            "damage": 55,
             "speed": 30,
 
             "icon": "loader_icon.png",
