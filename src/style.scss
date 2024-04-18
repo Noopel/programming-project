@@ -2,31 +2,47 @@ $bg-primary: rgb(86, 86, 86);
 $text-color-primary: white;
 $bg-card: rgb(70, 91, 124);
 $bg-game: #2d3e58;
-$test: rgb(64, 172, 188);
+$test: rgb(42, 62, 80);
+
+$large-width: 1080px;
 
 body {
   background-color: $bg-primary;
   color: $text-color-primary;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 0;
+  background-image: url("../assets/img/background_image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 header {
-  background-color: darken($bg-primary, 10%);
   min-height: 50px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  img {
+    max-height: 100px;
+  }
 }
 
 main {
   width: 1080px;
   margin: auto;
-  background-color: darken($bg-primary, 5%);
+  background-image: linear-gradient(darken($bg-primary, 5%), darken($bg-primary, 8%));
   padding: 2%;
 }
 
-@media screen and (max-width: 1080px) {
-  main {
-    width: 100%;
-  }
+#overview {
+  margin-bottom: 40px;
+}
+
+hr.seperator {
+  border: 2px #2e2e2e solid;
+  box-shadow: 0 0 10px 2px #2e2e2e;
+  width: 90%;
 }
 
 .sectionHeader {
@@ -35,12 +51,13 @@ main {
 
 #characterContainer {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   margin-bottom: 5%;
 }
 
 .card {
-  width: 33.3%;
+  width: 29.3%;
   background-image: linear-gradient($bg-card, darken($bg-card, 10%));
   padding: 15px;
   display: flex;
@@ -174,6 +191,7 @@ main {
   }
 }
 
+
 #gameContainer {
   margin-top: 30px;
 }
@@ -209,16 +227,79 @@ main {
     min-height: 45px;
     font-size: 18px;
     border-radius: 8px;
-    background-color: lighten($bg-card, 5%);
+    background-image: linear-gradient(lighten($bg-card, 5%), lighten($bg-card, 2%));
     color: white;
     font-weight: bold;
     border: 2px rgb(42, 42, 42) solid;
 
     &:hover {
-      background-color: darken($bg-card, 0%);
+      background-image: linear-gradient(darken($bg-card, 0%), darken($bg-card, 3%));
     }
     &:active {
-      background-color: darken($bg-card, 5%);
+      background-image: linear-gradient(darken($bg-card, 5%), darken($bg-card, 8%));
     }
+  }
+}
+
+@media screen and (max-width: $large-width) {
+  #overview {
+    h1 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  main {
+    width: 100%;
+    padding: 0;
+  }
+
+  #characterContainer {
+    justify-content: center;
+    .card {
+      width: 46.2%;
+    }
+  }
+  
+  #enemyGridContainer {
+    justify-content: center;
+
+    .gridItem {
+      width: 42%;
+    }
+  }
+}
+
+@media screen and (max-width: calc($large-width/2)) {
+  #characterContainer {
+    justify-content: center;
+    .card {
+      width: 80%;
+    }
+  }
+
+  #enemyGridContainer {
+    justify-content: center;
+
+    .gridItem {
+      width: 42%;
+    }
+  }
+
+  #statisticButtonMenu {
+    flex-wrap: wrap;
+
+    button {
+      width: 60%;
+      margin-bottom: 10px;
+    }
+  }
+
+  #statisticsContainer {
+    padding-bottom: 10px;
   }
 }

@@ -92,7 +92,7 @@ class MainMenu {
     this.mainMenu.visible = true;
     this.mainMenu.children.forEach((child) => this.animateAlpha(child, 1));
     this.playButton.eventMode = "static";
-    this.characterSelection?.reset();
+    this.characterSelection.reset();
   }
 }
 
