@@ -2,7 +2,7 @@
     "enemyList": [
         {
             "name": "Lemurian",
-            "health": 20,
+            "health": 30,
             "damage": 10,
             "speed": 32,
 
@@ -15,7 +15,7 @@
         },
         {
             "name": "Hermit Crab",
-            "health": 45,
+            "health": 50,
             "damage": 15,
             "speed": 22,
 
@@ -28,7 +28,7 @@
         },
         {
             "name": "Pest",
-            "health": 20,
+            "health": 30,
             "damage": 5,
             "speed": 45,
 
@@ -41,7 +41,7 @@
         },
         {
             "name": "Golem",
-            "health": 60,
+            "health": 85,
             "damage": 20,
             "speed": 18,
 
@@ -54,7 +54,7 @@
         },
         {
             "name": "Brass",
-            "health": 50,
+            "health": 70,
             "damage": 15,
             "speed": 24,
 
@@ -67,35 +67,35 @@
         },
         {
             "name": "Vagrant",
-            "health": 150,
-            "damage": 50,
-            "speed": 15,
+            "health": 400,
+            "damage": 40,
+            "speed": 8,
 
             "icon": "jellyfish.png",
             "spriteName": "jellyfish.png",
 
             "threat": 3,
-            "timeUntilSpawnable": 20,
+            "timeUntilSpawnable": 30,
             "weight": 3
         },
         {
             "name": "Stone Titan",
-            "health": 125,
-            "damage": 35,
-            "speed": 22,
+            "health": 240,
+            "damage": 30,
+            "speed": 16,
 
             "icon": "titan.png",
             "spriteName": "titan.png",
 
             "threat": 3,
-            "timeUntilSpawnable": 40,
+            "timeUntilSpawnable": 45,
             "weight": 3
         },
         {
             "name": "Overlord",
-            "health": 100,
+            "health": 200,
             "damage": 25,
-            "speed": 32,
+            "speed": 24,
 
             "icon": "imp_overlord.png",
             "spriteName": "imp_overlord.png",
