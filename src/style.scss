@@ -33,10 +33,26 @@ main {
   margin: auto;
   background-image: linear-gradient(darken($bg-primary, 5%), darken($bg-primary, 8%));
   padding: 2%;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 5px darken($bg-primary, 15%);
+  margin-bottom: 20px;
 }
 
 #overview {
   margin-bottom: 40px;
+
+  h1 {
+    font-size: 40px;
+    color: rgb(152, 205, 255);
+    -webkit-text-stroke: 1px black;
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+
+  p {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 hr.seperator {
@@ -211,6 +227,7 @@ hr.seperator {
     background-color: lighten($bg-primary, 1%);
     width: 80%;
     padding: 10px;
+    margin-bottom: 20px;
   }
 }
 

@@ -14,7 +14,7 @@
             "weight": 15
         },
         {
-            "name": "Hermit",
+            "name": "Hermit Crab",
             "health": 45,
             "damage": 15,
             "speed": 22,
@@ -79,7 +79,7 @@
             "weight": 3
         },
         {
-            "name": "Titan",
+            "name": "Stone Titan",
             "health": 125,
             "damage": 35,
             "speed": 22,

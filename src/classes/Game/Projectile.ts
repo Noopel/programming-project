@@ -17,8 +17,8 @@ class Projectile {
 
     this.damage = damage
 
-    const BULLET_LIFETIME = 20;
-    const VELOCITY = 300;
+    const BULLET_LIFETIME = 5;
+    const VELOCITY = 400;
     const endPosition = startPosition.add(direction.multiply(new Point(VELOCITY * BULLET_LIFETIME, VELOCITY * BULLET_LIFETIME)));
 
     let bulletSprite = sprite;
