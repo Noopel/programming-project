@@ -9,8 +9,7 @@
             "icon": "acrid_icon.png",
             "description": "This dog doesn't hold back",
 
-            "characterSprite": "acrid.png",
-            "gunSprite": "gun.png"
+            "characterSprite": "acrid.png"
         },
         {
             "name": "Commando",
@@ -21,8 +20,7 @@
             "icon": "commando_icon.png",
             "description": "Two guns are better than one",
 
-            "characterSprite": "commando.png",
-            "gunSprite": "gun.png"
+            "characterSprite": "commando.png"
         },
         {
             "name": "Loader",
@@ -33,8 +31,7 @@
             "icon": "loader_icon.png",
             "description": "Fists are the way to go",
 
-            "characterSprite": "loader.png",
-            "gunSprite": "gun.png"
+            "characterSprite": "loader.png"
         }
     ]
 }

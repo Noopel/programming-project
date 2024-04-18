@@ -21,7 +21,6 @@ type CharacterInfo = {
   description: string;
 
   characterSprite: string;
-  gunSprite: string;
 };
 
 type GameData = {
