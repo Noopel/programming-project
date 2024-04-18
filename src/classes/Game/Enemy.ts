@@ -1,6 +1,7 @@
 import gsap from "gsap";
-import { Color, Graphics, Point, Sprite } from "pixi.js";
+import { Point, Sprite } from "pixi.js";
 import HealthBar from "./HealthBar";
+import CollisionBox from "./CollisionBox";
 
 let enemyId = 0;
 
@@ -14,7 +15,7 @@ class Enemy {
   canAttack: boolean = true;
 
   sprite: Sprite;
-  collisionBox: Graphics;
+  collisionBox: CollisionBox;
 
   isAlive: boolean = true;
 
@@ -34,20 +35,13 @@ class Enemy {
     let EnemySprite = sprite;
     EnemySprite.anchor.set(0.5);
     EnemySprite.scale.set(0.2);
-    EnemySprite.label = "Enemy - " + enemyInfo.name;
+    EnemySprite.label = `Enemy - ${enemyInfo.name}`;
     EnemySprite.position = startPosition;
-    //EnemySprite.rotation = Math.atan2(direction.y, direction.x)
 
     this.sprite = EnemySprite;
 
     this.healthBar = new HealthBar(EnemySprite);
-
-    const collisionBox = new Graphics();
-    collisionBox.rect(0 - EnemySprite.width * 2.5, 0 - EnemySprite.width * 2.5, EnemySprite.width * 5, EnemySprite.width * 5);
-
-    collisionBox.fill(new Color("rgba(255, 0, 0, 0)"));
-    this.collisionBox = collisionBox;
-    EnemySprite.addChild(collisionBox);
+    this.collisionBox = new CollisionBox(EnemySprite, 0 - EnemySprite.width * 2.5, 0 - EnemySprite.width * 2.5, EnemySprite.width * 5, EnemySprite.width * 5);
 
     gsap.to(EnemySprite.position, {
       x: EndPosition.x,

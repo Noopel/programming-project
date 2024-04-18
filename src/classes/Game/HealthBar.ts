@@ -5,6 +5,7 @@ class HealthBar {
 
     constructor(parent: Sprite) {
         let healthBar = new Graphics()
+        healthBar.label = "HealthBar"
         healthBar.rect(-(parent.width*3*0.33), -(parent.width*3*0.9), parent.width*3*0.8, parent.width*0.25)
         healthBar.fill("red")
         this.healthBar = healthBar

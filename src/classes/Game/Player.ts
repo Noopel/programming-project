@@ -1,8 +1,9 @@
-import { Color, Container, Graphics, Sprite } from "pixi.js";
+import { Container, Sprite } from "pixi.js";
 import Game from "./Game";
 import Gun from "./Gun";
 import gsap from "gsap";
 import HealthBar from "./HealthBar";
+import CollisionBox from "./CollisionBox";
 
 class Player {
   maxHealth: number;
@@ -16,7 +17,7 @@ class Player {
   isAlive: boolean = true;
 
   gun: Gun | undefined;
-  collisionBox: Graphics;
+  collisionBox: CollisionBox;
 
   onDeath: (() => void) | undefined;
 
@@ -36,20 +37,14 @@ class Player {
 
     this.healthBar = new HealthBar(charSprite);
 
-    const collisionBox = new Graphics();
-    collisionBox.rect(0 - charSprite.width * 2.5, 0 - charSprite.width * 2.5, charSprite.width * 5, charSprite.width * 5);
-
-    collisionBox.fill(new Color("rgba(255, 0, 0, 0)"));
-    this.collisionBox = collisionBox;
-    charSprite.addChild(collisionBox);
+    this.collisionBox = new CollisionBox(charSprite, 0 - charSprite.width * 2.5, 0 - charSprite.width * 2.5, charSprite.width * 5, charSprite.width * 5);
 
     this.sprite = charSprite;
 
     const COOLDOWN = 30 / charInfo.speed;
     let onCooldown = false;
 
-    const gun = new Gun(game, stageContainer);
-    this.gun = gun;
+    this.gun = new Gun(game, stageContainer);
 
     stageContainer.eventMode = "static";
     stageContainer.addEventListener("click", (event) => {
@@ -60,7 +55,7 @@ class Player {
 
       //Fire projectile
       let direction = event.global.subtract(charSprite.position).normalize();
-      gun.fire(charSprite.position, direction, charInfo.damage);
+      this.gun?.fire(charSprite.position, direction, charInfo.damage);
 
       gsap.to(charSprite.scale, {
         x: 0.21,

@@ -35,6 +35,7 @@ class StageManager {
     this.currentStage = stage;
 
     const bg = new Graphics();
+    bg.label = "StageBackground"
     bg.rect(0, 0, this.game.canvasWidth, this.game.canvasHeight);
     bg.fill(stageInfo.color);
     stage.addChild(bg);

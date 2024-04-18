@@ -1,12 +1,13 @@
 import gsap from "gsap";
-import { Color, Container, Graphics, Point, Sprite } from "pixi.js";
+import { Container, Point, Sprite } from "pixi.js";
+import CollisionBox from "./CollisionBox";
 
 let projectileId = 0;
 
 class Projectile {
   id: string = projectileId + "_bullet";
   onDeath: any;
-  collisionBox: Graphics;
+  collisionBox: CollisionBox;
   sprite: Sprite;
 
   damage: number;
@@ -29,12 +30,8 @@ class Projectile {
     bulletSprite.angle += 90;
 
     this.sprite = bulletSprite;
-
-    const collisionBox = new Graphics();
-    collisionBox.rect(0 - bulletSprite.width * 0.8 * (1 + bulletSprite.anchor.x), 0 - bulletSprite.height * 1.9 * (1 + bulletSprite.anchor.y), 128, 128);
-    collisionBox.fill(new Color("rgba(255, 0, 0, 0)"));
-    this.collisionBox = collisionBox;
-    bulletSprite.addChild(collisionBox);
+    
+    this.collisionBox = new CollisionBox(bulletSprite, 0 - bulletSprite.width * 0.8 * (1 + bulletSprite.anchor.x), 0 - bulletSprite.height * 1.9 * (1 + bulletSprite.anchor.y), 128, 128);
 
     stageContainer.addChild(bulletSprite);
 

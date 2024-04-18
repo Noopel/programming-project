@@ -26,6 +26,7 @@ class Game {
     this.assets = assets;
     this.gameData = gameData;
 
+    /** Creates a transition graphic for use in going between a Stage and the Main Menu */
     const transition = new Graphics();
     transition.rect(0, 0, app.canvas.width, app.canvas.height);
     transition.fill("0x1d1d1d");
@@ -105,7 +106,7 @@ class Game {
 
         /** Bullet collisions! */
         bullets.forEach((bullet)=>{
-          if(!collisionDetector.check(enemy.collisionBox, bullet.collisionBox)){return}
+          if(!collisionDetector.check(enemy.collisionBox.box, bullet.collisionBox.box)){return}
           if(!enemy.isAlive){return}
           let died = enemy.takeDamage(bullet.damage)
           if(died && this.currentSession){this.currentSession.kills++}
@@ -114,7 +115,7 @@ class Game {
         })
 
         /** If bullet didn't kill enemy then we'll check for player collision */
-        if(!this.player || !this.player.isAlive || !collisionDetector.check(enemy.collisionBox, this.player.collisionBox)) {return}
+        if(!this.player || !this.player.isAlive || !collisionDetector.check(enemy.collisionBox.box, this.player.collisionBox.box)) {return}
         if(!enemy.canAttack || !enemy.isAlive){return}
         console.log("Player took " + enemy.damage)
         console.log("Health left: " + (this.player.health-enemy.damage))
