@@ -2,12 +2,12 @@ import './style.scss'
 
 import 'pixi.js/math-extras';
 
-import characterData from "../assets/json/characterData.json"
+import characterData from "../public/assets/json/characterData.json"
 import CharacterCard from './classes/CharacterCard'
 import { Application, Assets } from 'pixi.js';
 import Game from './classes/Game/Game';
-import charData from "../assets/json/characterData.json"
-import enemyData from "../assets/json/enemyData.json"
+import charData from "../public/assets/json/characterData.json"
+import enemyData from "../public/assets/json/enemyData.json"
 import GameStatistics from './classes/GameStatistics';
 import EnemyGrid from './classes/EnemyGrid';
 
@@ -19,21 +19,21 @@ const app = new Application();
 globalThis.__PIXI_APP__ = app;
 
 let assetBundle: {[key: string]: string} = {
-  playButton: "../assets/img/playButton.png",
-  bulletSprite: "../assets/img/bullet.png"
+  playButton: "../public/assets/img/playButton.png",
+  bulletSprite: "../public/assets/img/bullet.png"
 
 }
 
 /** Create bundle data for each character */
 charData.characterList.forEach((charData) => {
-  assetBundle[charData.name + "_sprite"] = `../assets/img/${charData.characterSprite}`
-  assetBundle[charData.name + "_icon"] = `../assets/img/${charData.icon}`
+  assetBundle[charData.name + "_sprite"] = `../public/assets/img/${charData.characterSprite}`
+  assetBundle[charData.name + "_icon"] = `../public/assets/img/${charData.icon}`
 });
 
 /** Create bundle data for each enemy */
 enemyData.enemyList.forEach((enemData)=>{
-  assetBundle[enemData.name + "_sprite"] = `../assets/img/${enemData.spriteName}`
-  assetBundle[enemData.name + "_icon"] = `../assets/img/${enemData.icon}`
+  assetBundle[enemData.name + "_sprite"] = `../public/assets/img/${enemData.spriteName}`
+  assetBundle[enemData.name + "_icon"] = `../public/assets/img/${enemData.icon}`
 })
 
 Assets.addBundle("assets", assetBundle);

@@ -1,7 +1,7 @@
 import CustomElement from "./CustomClasses/CustomElement";
 
 class CharacterCard {
-  static imagePath = "../assets/img/"
+  static imagePath = "../public/assets/img/"
 
   cardElement: CustomElement;
 
