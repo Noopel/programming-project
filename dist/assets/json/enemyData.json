@@ -1,0 +1,108 @@
+{
+    "enemyList": [
+        {
+            "name": "Lemurian",
+            "health": 30,
+            "damage": 10,
+            "speed": 32,
+
+            "icon": "salamander.png",
+            "spriteName": "salamander.png",
+
+            "threat": 1,
+            "timeUntilSpawnable": 0,
+            "weight": 15
+        },
+        {
+            "name": "Hermit Crab",
+            "health": 50,
+            "damage": 15,
+            "speed": 22,
+
+            "icon": "crab.png",
+            "spriteName": "crab.png",
+
+            "threat": 1,
+            "timeUntilSpawnable": 0,
+            "weight": 12
+        },
+        {
+            "name": "Pest",
+            "health": 30,
+            "damage": 5,
+            "speed": 45,
+
+            "icon": "flyingshit.png",
+            "spriteName": "flyingshit.png",
+
+            "threat": 1,
+            "timeUntilSpawnable": 10,
+            "weight": 8
+        },
+        {
+            "name": "Golem",
+            "health": 85,
+            "damage": 20,
+            "speed": 18,
+
+            "icon": "stone_golem.png",
+            "spriteName": "stone_golem.png",
+
+            "threat": 2,
+            "timeUntilSpawnable": 20,
+            "weight": 7
+        },
+        {
+            "name": "Brass",
+            "health": 70,
+            "damage": 15,
+            "speed": 24,
+
+            "icon": "brass.png",
+            "spriteName": "brass.png",
+
+            "threat": 2,
+            "timeUntilSpawnable": 30,
+            "weight": 5
+        },
+        {
+            "name": "Vagrant",
+            "health": 400,
+            "damage": 40,
+            "speed": 8,
+
+            "icon": "jellyfish.png",
+            "spriteName": "jellyfish.png",
+
+            "threat": 3,
+            "timeUntilSpawnable": 30,
+            "weight": 3
+        },
+        {
+            "name": "Stone Titan",
+            "health": 240,
+            "damage": 30,
+            "speed": 16,
+
+            "icon": "titan.png",
+            "spriteName": "titan.png",
+
+            "threat": 3,
+            "timeUntilSpawnable": 45,
+            "weight": 3
+        },
+        {
+            "name": "Overlord",
+            "health": 200,
+            "damage": 25,
+            "speed": 24,
+
+            "icon": "imp_overlord.png",
+            "spriteName": "imp_overlord.png",
+
+            "threat": 3,
+            "timeUntilSpawnable": 60,
+            "weight": 2
+        }
+    ]
+}
