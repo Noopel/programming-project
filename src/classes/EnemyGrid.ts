@@ -1,6 +1,6 @@
 import CustomElement from "./CustomClasses/CustomElement"
 
-const imagePath = "../public/assets/img/"
+const imagePath = "../assets/img/"
 
 class EnemyGrid {
     constructor(enemyList: EnemyData[], parent: HTMLElement | Element) {
