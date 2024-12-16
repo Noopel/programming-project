@@ -11,7 +11,7 @@ class GameStatistics {
 
   killChart: Chart;
   timeChart: Chart;
-  survivorChart: Chart;
+  survivorChart: Chart<"pie", number[], string>;
 
   currentChart: CustomElement | undefined;
 
@@ -21,7 +21,7 @@ class GameStatistics {
     const container = new CustomElement({ type: "article", id: "statisticsContainer" });
     this.container = container;
 
-    new CustomElement({type: "h1", innerText: "Statistics"}, container)
+    new CustomElement({ type: "h1", innerText: "Statistics" }, container);
     const buttonMenu = new CustomElement({ type: "section", id: "statisticButtonMenu" }, container);
 
     const killCon = new CustomElement({ type: "section", id: "killStatistic", class: "statistics" }, container);
@@ -37,7 +37,32 @@ class GameStatistics {
 
     this.killChart = this.createChart(this.killStatistic.element as HTMLCanvasElement, "Number of kills");
     this.timeChart = this.createChart(this.timeStatistic.element as HTMLCanvasElement, "Seconds survived");
-    this.survivorChart = this.createChart(this.survivorStatistic.element as HTMLCanvasElement, "Survivor pick rate");
+    this.survivorChart = new Chart(this.survivorStatistic.element as HTMLCanvasElement, {
+      type: "pie",
+      data: {
+        labels: [],
+        datasets: [
+          {
+            data: [],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Survivor pick rate",
+            color: "white"
+          },
+        },
+       color: "white"
+      },
+    });
 
     gameData.characterList.forEach((charInfo) => {
       this.survivorChart.data.labels?.push(charInfo.name);
@@ -66,7 +91,7 @@ class GameStatistics {
       oldChart.visible = false;
     }
     newChart.visible = true;
-    this.currentChart = newChart
+    this.currentChart = newChart;
   }
 
   setParent(elem: HTMLElement | Element) {
