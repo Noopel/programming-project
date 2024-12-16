@@ -1,0 +1,37 @@
+{
+    "characterList": [
+        {
+            "name": "Acrid",
+            "health": 120,
+            "damage": 40,
+            "speed": 50,
+
+            "icon": "acrid_icon.png",
+            "description": "This dog doesn't hold back",
+
+            "characterSprite": "acrid.png"
+        },
+        {
+            "name": "Commando",
+            "health": 80,
+            "damage": 15,
+            "speed": 150,
+
+            "icon": "commando_icon.png",
+            "description": "Two guns are better than one",
+
+            "characterSprite": "commando.png"
+        },
+        {
+            "name": "Loader",
+            "health": 100,
+            "damage": 60,
+            "speed": 35,
+
+            "icon": "loader_icon.png",
+            "description": "Fists are the way to go",
+
+            "characterSprite": "loader.png"
+        }
+    ]
+}

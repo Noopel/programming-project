@@ -2,12 +2,12 @@ import "./style.scss";
 
 import "pixi.js/math-extras";
 
-import characterData from "../src/assets/json/characterData.json";
+import characterData from "../src/json/characterData.json";
 import CharacterCard from "./classes/CharacterCard";
 import { Application, Assets } from "pixi.js";
 import Game from "./classes/Game/Game";
-import charData from "../src/assets/json/characterData.json";
-import enemyData from "../src/assets/json/enemyData.json";
+import charData from "../src/json/characterData.json";
+import enemyData from "../src/json/enemyData.json";
 import GameStatistics from "./classes/GameStatistics";
 import EnemyGrid from "./classes/EnemyGrid";
 
@@ -19,20 +19,20 @@ const app = new Application();
 globalThis.__PIXI_APP__ = app;
 
 let assetBundle: { [key: string]: string } = {
-  playButton: "../src/assets/img/playButton.png",
-  bulletSprite: "../src/assets/img/bullet.png",
+  playButton: "/assets/img/playbutton.png",
+  bulletSprite: "/assets/img/bullet.png",
 };
 
 /** Create bundle data for each character */
 charData.characterList.forEach((charData) => {
-  assetBundle[charData.name + "_sprite"] = `../src/assets/img/${charData.characterSprite}`;
-  assetBundle[charData.name + "_icon"] = `../src/assets/img/${charData.icon}`;
+  assetBundle[charData.name + "_sprite"] = `/assets/img/${charData.characterSprite}`;
+  assetBundle[charData.name + "_icon"] = `/assets/img/${charData.icon}`;
 });
 
 /** Create bundle data for each enemy */
 enemyData.enemyList.forEach((enemData) => {
-  assetBundle[enemData.name + "_sprite"] = `../src/assets/img/${enemData.spriteName}`;
-  assetBundle[enemData.name + "_icon"] = `../src/assets/img/${enemData.icon}`;
+  assetBundle[enemData.name + "_sprite"] = `/assets/img/${enemData.spriteName}`;
+  assetBundle[enemData.name + "_icon"] = `/assets/img/${enemData.icon}`;
 });
 
 Assets.addBundle("assets", assetBundle);
@@ -70,9 +70,14 @@ Assets.addBundle("assets", assetBundle);
   /** Pre-setup for GameStatistics so that it's updateCharts method can be sent to Game as a callback */
   const gameStatistics = new GameStatistics({ characterList: charData.characterList, enemyList: enemyData.enemyList });
 
-  new Game(app, assets, { characterList: charData.characterList, enemyList: enemyData.enemyList }, (gameSessions: SessionData[]) => {
-    gameStatistics.updateCharts(gameSessions[gameSessions.length - 1]);
-  });
+  new Game(
+    app,
+    assets,
+    { characterList: charData.characterList, enemyList: enemyData.enemyList },
+    (gameSessions: SessionData[]) => {
+      gameStatistics.updateCharts(gameSessions[gameSessions.length - 1]);
+    }
+  );
 
   /** Parent GameStatistics */
   let main = document.querySelector("main") as HTMLElement;
