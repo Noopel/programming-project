@@ -1,4 +1,4 @@
-import { Container, Sprite } from "pixi.js";
+import { Container, Point, Sprite } from "pixi.js";
 import Game from "./Game";
 import Gun from "./Gun";
 import gsap from "gsap";
@@ -19,7 +19,13 @@ class Player {
   gun: Gun | undefined;
   collisionBox: CollisionBox;
 
+  mouseDown: boolean = false;
+  latestMousePosition: Point = new Point();
+
   onDeath: (() => void) | undefined;
+
+  handleGunFiring: ()=>void;
+  
 
   constructor(game: Game, charInfo: CharacterInfo, stageContainer: Container) {
     this.maxHealth = charInfo.health;
@@ -37,7 +43,13 @@ class Player {
 
     this.healthBar = new HealthBar(charSprite);
 
-    this.collisionBox = new CollisionBox(charSprite, 0 - charSprite.width * 2.5, 0 - charSprite.width * 2.5, charSprite.width * 5, charSprite.width * 5);
+    this.collisionBox = new CollisionBox(
+      charSprite,
+      0 - charSprite.width * 2.5,
+      0 - charSprite.width * 2.5,
+      charSprite.width * 5,
+      charSprite.width * 5
+    );
 
     this.sprite = charSprite;
 
@@ -46,15 +58,14 @@ class Player {
 
     this.gun = new Gun(game, stageContainer);
 
-    stageContainer.eventMode = "static";
-    stageContainer.addEventListener("click", (event) => {
+    this.handleGunFiring = () => {
       if (onCooldown) {
         return;
       }
       onCooldown = true;
 
       //Fire projectile
-      let direction = event.global.subtract(charSprite.position).normalize();
+      let direction = this.latestMousePosition.subtract(charSprite.position).normalize();
       this.gun?.fire(charSprite.position, direction, charInfo.damage);
 
       gsap.to(charSprite.scale, {
@@ -72,7 +83,24 @@ class Player {
 
       setTimeout(() => {
         onCooldown = false;
+        if (this.mouseDown) {
+          this.handleGunFiring();
+        }
       }, COOLDOWN * 1000);
+    }
+
+    stageContainer.eventMode = "static";
+    stageContainer.addEventListener("mousemove", (event)=>{
+      this.latestMousePosition = event.global
+    })
+    
+    stageContainer.addEventListener("mousedown", () => {
+      this.mouseDown = true;
+      this.handleGunFiring();
+    });
+
+    stageContainer.addEventListener("mouseup", () => {
+      this.mouseDown = false;
     });
   }
 
@@ -91,7 +119,7 @@ class Player {
       }
     );
 
-    this.healthBar.updateScale(newHealth/this.maxHealth)
+    this.healthBar.updateScale(newHealth / this.maxHealth);
 
     if (this.health === 0) {
       this.isAlive = false;
