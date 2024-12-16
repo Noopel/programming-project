@@ -11,7 +11,7 @@ import enemyData from "../src/assets/json/enemyData.json";
 import GameStatistics from "./classes/GameStatistics";
 import EnemyGrid from "./classes/EnemyGrid";
 
-declare module globalThis {
+declare namespace globalThis {
   var __PIXI_APP__: Application;
 }
 
