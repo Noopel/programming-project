@@ -94,8 +94,9 @@ class Player {
       this.latestMousePosition = event.global
     })
     
-    stageContainer.addEventListener("mousedown", () => {
+    stageContainer.addEventListener("mousedown", (event) => {
       this.mouseDown = true;
+      this.latestMousePosition = event.global
       this.handleGunFiring();
     });
 
