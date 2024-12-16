@@ -1,6 +1,8 @@
 import CustomElement from "./CustomClasses/CustomElement"
 
-const imagePath = "/assets/img/"
+const isProd = import.meta.env.PROD
+const base = import.meta.env.BASE_URL
+const imagePath = (isProd ? base : "") + "assets/img/"
 
 class EnemyGrid {
     constructor(enemyList: EnemyData[], parent: HTMLElement | Element) {

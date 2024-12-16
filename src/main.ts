@@ -11,6 +11,10 @@ import enemyData from "../src/json/enemyData.json";
 import GameStatistics from "./classes/GameStatistics";
 import EnemyGrid from "./classes/EnemyGrid";
 
+const isProd = import.meta.env.PROD
+const base = import.meta.env.BASE_URL
+const assetPath = (isProd ? base : "") + "assets/img/"
+
 declare namespace globalThis {
   var __PIXI_APP__: Application;
 }
@@ -18,21 +22,23 @@ declare namespace globalThis {
 const app = new Application();
 globalThis.__PIXI_APP__ = app;
 
+
 let assetBundle: { [key: string]: string } = {
-  playButton: "/assets/img/playbutton.png",
-  bulletSprite: "/assets/img/bullet.png",
+  playButton: assetPath+"playbutton.png",
+  bulletSprite: assetPath+"bullet.png",
 };
+
 
 /** Create bundle data for each character */
 charData.characterList.forEach((charData) => {
-  assetBundle[charData.name + "_sprite"] = `/assets/img/${charData.characterSprite}`;
-  assetBundle[charData.name + "_icon"] = `/assets/img/${charData.icon}`;
+  assetBundle[charData.name + "_sprite"] = `${assetPath}${charData.characterSprite}`;
+  assetBundle[charData.name + "_icon"] = `${assetPath}${charData.icon}`;
 });
 
 /** Create bundle data for each enemy */
 enemyData.enemyList.forEach((enemData) => {
-  assetBundle[enemData.name + "_sprite"] = `/assets/img/${enemData.spriteName}`;
-  assetBundle[enemData.name + "_icon"] = `/assets/img/${enemData.icon}`;
+  assetBundle[enemData.name + "_sprite"] = `${assetPath}${enemData.spriteName}`;
+  assetBundle[enemData.name + "_icon"] = `${assetPath}${enemData.icon}`;
 });
 
 Assets.addBundle("assets", assetBundle);

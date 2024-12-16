@@ -1,7 +1,10 @@
 import CustomElement from "./CustomClasses/CustomElement";
 
+const isProd = import.meta.env.PROD
+const base = import.meta.env.BASE_URL
+
 class CharacterCard {
-  static imagePath = "/assets/img/"
+  static imagePath = (isProd ? base : "") + "assets/img/"
 
   cardElement: CustomElement;
 
